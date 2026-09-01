@@ -1,0 +1,71 @@
+/// GroceryOCR Project Documentation
+///
+/// Overview:
+/// GroceryOCR is an iOS app that allows users to scan grocery ingredient lists using the camera, extract text via OCR, and export the processed data as a CSV file. The app also enables users to manage and organize scanned data within the app.
+///
+/// This document provides an overview of the core Swift files, their functionality, and how they interact.
+import Foundation
+/// ImagePicker.swift
+///
+/// Purpose:
+/// Provides a SwiftUI wrapper around UIImagePickerController to allow users to capture images using the camera.
+///
+/// Key Components:
+/// - UIViewControllerRepresentable: Enables SwiftUI to use UIKit's UIImagePickerController.
+/// - makeUIViewController: Initializes and configures UIImagePickerController.
+/// - updateUIViewController: Required for UIViewControllerRepresentable but not used.
+/// - makeCoordinator: Creates a delegate to handle image selection.
+/// - Coordinator: A helper class to manage the selection and dismissal of the picker.
+/// OCRHelper.swift
+///
+/// Purpose:
+/// Uses Apple’s Vision framework to recognize text from images and extract ingredient lists.
+///
+/// Key Components:
+/// - recognizeText(from:completion:):
+///   - Uses VNRecognizeTextRequest to process the image.
+///   - Extracts text from recognized observations.
+///   - Calls the completion handler with the extracted text.
+/// How It Works:
+/// 1. Converts the UIImage to CGImage.
+/// 2. Performs text recognition with VNImageRequestHandler.
+/// 3. Extracts text and returns it via a closure.
+/// CSVHelper.swift
+///
+/// Purpose:
+/// Handles storing and exporting scanned ingredients.
+///
+/// Key Components:
+/// - saveScannedText(_:): Appends a new scan to storage.
+/// - loadScannedText() -> [String]: Loads stored scans from UserDefaults.
+/// - saveToUserDefaults(data:): Saves ingredient lists persistently.
+/// - saveToCSV(data:): Writes scanned data to a CSV file.
+/// - exportCSV(): Allows users to share the CSV file via UIActivityViewController.
+/// - getDocumentsDirectory(): Returns the app's document directory.
+/// How It Works:
+/// 1. Scanned ingredients are stored in UserDefaults.
+/// 2. On export, stored ingredients are written to a CSV file.
+/// 3. The file is shared via the standard iOS share sheet.
+/// ContentView.swift
+///
+/// Purpose:
+/// The main UI for the app, allowing users to:
+/// - Capture an image.
+/// - Extract text from the image.
+/// - View and manage extracted ingredients.
+/// - Export the final list as a CSV file.
+/// Key Components:
+/// - @State properties:
+///   - image: Stores the captured image.
+///   - extractedText: Holds the OCR-extracted text.
+///   - storedScans: Stores previously scanned ingredients.
+/// - deleteScan(_:): Removes an ingredient from the list and updates storage.
+/// - Floating buttons for key actions:
+///   - Camera: Opens the image picker.
+///   - OCR: Extracts text from the image.
+///   - Export: Saves and shares the CSV.
+/// How It Works:
+/// 1. Users capture an image using ImagePicker.
+/// 2. The OCR process extracts text from the image.
+/// 3. The text is added to a persistent ingredient list.
+/// 4. Users can delete, edit, or export the list as a CSV.
