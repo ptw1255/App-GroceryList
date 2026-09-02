@@ -1,33 +1,37 @@
-//
-//  StorageManager.swift
-//  GroceryOCR
-//
-//  Created by Parker Wall on 2/12/25.
-//
+import Foundation
 import SwiftUI
 
-class StorageManager: ObservableObject {
-    @Published var storedScans: [String] = CSVHelper.loadScannedText()
+final class StorageManager: ObservableObject {
+    @Published var storedScans: [String] = []
+    @Published var exportURL: URL?
+
+    private let repository: IngredientRepository
+    private var currentEntries: [ShoppingListEntry] = []
+
+    init(repository: IngredientRepository = LocalIngredientRepository()) {
+        self.repository = repository
+        refreshStoredScans()
+    }
 
     func deleteItem(_ scan: String) {
-        storedScans.removeAll { $0 == scan }
-        CSVHelper.saveToUserDefaults(data: storedScans)
-        CSVHelper.saveToCSV(data: storedScans)
-    }
-
-    func clearCache() {
-        CSVHelper.clearStoredData()
-        storedScans = []
-    }
-
-    func exportCSV() {
-        if let rootVC = UIApplication.rootViewController {
-            CSVHelper.exportCSV(from: rootVC)
+        if let entry = currentEntries.first(where: { $0.displayTitle == scan || $0.details == scan }) {
+            try? repository.deleteEntry(withID: entry.id)
+            refreshStoredScans()
         }
     }
 
+    func clearCache() {
+        try? repository.clear()
+        refreshStoredScans()
+    }
+
+    func exportCSV() {
+        exportURL = try? repository.exportCSVURL()
+    }
+
     func refreshStoredScans() {
-        storedScans = CSVHelper.loadScannedText()
+        currentEntries = (try? repository.loadEntries()) ?? []
+        storedScans = currentEntries.map { $0.details }
+        exportURL = try? repository.exportCSVURL()
     }
 }
-

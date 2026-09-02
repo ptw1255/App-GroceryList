@@ -6,6 +6,7 @@
 //
 import SwiftUI
 import PhotosUI
+import UIKit
 
 struct ImagePicker: UIViewControllerRepresentable {
     @Binding var images: [UIImage]
@@ -48,4 +49,3 @@ struct ImagePicker: UIViewControllerRepresentable {
 
     func updateUIViewController(_ uiViewController: PHPickerViewController, context: Context) {}
 }
-

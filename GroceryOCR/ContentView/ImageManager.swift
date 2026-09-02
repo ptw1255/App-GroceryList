@@ -5,6 +5,7 @@
 //  Created by Parker Wall on 2/12/25.
 //
 import SwiftUI
+import UIKit
 
 class ImageManager: ObservableObject {
     @Published var images: [UIImage] = []

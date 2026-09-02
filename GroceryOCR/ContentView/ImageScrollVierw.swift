@@ -5,6 +5,7 @@
 //  Created by Parker Wall on 2/12/25.
 //
 import SwiftUI
+import UIKit
 
 struct ImageScrollView: View {
     @Binding var images: [UIImage]
@@ -35,4 +36,3 @@ struct ImageScrollView: View {
         }
     }
 }
-
