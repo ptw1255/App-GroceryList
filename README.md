@@ -164,7 +164,7 @@ The application builds successfully with:
 
 The proposed deal-planning experience would let shoppers declare local stores, retrieve authorized weekly-flyer data through a controlled MCP/provider boundary, match verified deals to the grocery list, and organize a suggested store plan without allowing the model to invent prices or silently substitute ingredients.
 
-[Follow future feature issue #1 →](https://github.com/ptw1255/GroceryOCR/issues/1)
+[Follow future feature issue #1 →](https://github.com/ptw1255/App-GroceryList/issues/1)
 
 ## Run the app
 
@@ -182,7 +182,7 @@ No external package dependency is required for the current on-device flow.
 - [Native iOS redesign plan](docs/02-ios-native-redesign-plan.md) — experience map, wireframes, state model, native component strategy, and vertical slices.
 - [Deterministic ingredient aggregation](docs/03-deterministic-ingredient-aggregation-plan.md) — exact parsing, strict grouping, conversion, purchase rounding, and fixtures.
 - [Imperial shopping decision engine](docs/04-imperial-shopping-decision-engine.md) — purchase-aware grouping, package behavior, explanations, and overrides.
-- [Local deal-planning proposal](https://github.com/ptw1255/GroceryOCR/issues/1) — future authorized flyer matching through MCP and provider adapters.
+- [Local deal-planning proposal](https://github.com/ptw1255/App-GroceryList/issues/1) — future authorized flyer matching through MCP and provider adapters.
 
 ## Repository map
 
