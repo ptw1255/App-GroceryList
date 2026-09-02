@@ -6,6 +6,7 @@ An iOS app that extracts structured grocery ingredients from recipe images using
 
 - [Stabilization and test plan](docs/01-stabilization-and-test-plan.md) — reproduced build failures, dependency map, test instrumentation, CI gates, and implementation order.
 - [Native iOS redesign plan](docs/02-ios-native-redesign-plan.md) — experience map, wireframes, state/data schema, native component strategy, and vertical slices.
+- [Deterministic ingredient aggregation plan](docs/03-deterministic-ingredient-aggregation-plan.md) — exact OCR quantity parsing, strict grouping, unit conversion, purchase rounding, list behavior, and test fixtures.
 
 ## Contents
 

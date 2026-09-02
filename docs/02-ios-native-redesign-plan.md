@@ -3,6 +3,8 @@
 Status: product schema and implementation plan; no UI code included  
 Dependency: begin after the stabilization plan reaches Phase 3
 
+Companion feature specification: [Deterministic ingredient aggregation](03-deterministic-ingredient-aggregation-plan.md)
+
 ## Product outcome
 
 GroceryOCR should feel like a focused Apple-platform utility: choose or capture recipe images, see what the app understood, correct the result, and keep or share a clean ingredient list.
@@ -282,6 +284,8 @@ Raw recognized lines are transient by default. Persist only if the review experi
 | `needsReview` | Bool | Set by explicit parser rules. |
 | `createdAt` / `updatedAt` | Date | Local lifecycle. |
 | `position` | Int | Deterministic list/export order. |
+
+Exact recipe demand and purchase-rounded list quantities are separate aggregate models. Their grouping, conversion, rounding, trace, and override rules are defined in the companion aggregation specification.
 
 ### `UserFacingError`
 
