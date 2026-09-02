@@ -3,6 +3,8 @@
 Status: feature specification; no production code included  
 Dependencies: stabilization Phase 2 domain seams and the redesign's structured ingredient model
 
+Advanced shopping projection: [Imperial shopping decision engine](04-imperial-shopping-decision-engine.md)
+
 ## Product outcome
 
 Turn OCR-derived recipe requirements into a trustworthy shopping list without losing the original recipe quantities.
@@ -15,6 +17,8 @@ Recipe demand: 1¼ onions
 Shopping quantity: 2 onions
 Reason: onions are purchased as whole countable items
 ```
+
+The visible shopping list uses U.S. Imperial units only. Non-Imperial OCR input may be converted at ingestion so a source recipe is not lost, but it is never emitted as shopping-list output.
 
 The key product rule is:
 
@@ -154,7 +158,7 @@ Examples:
 
 - `1 diced onion` + `½ chopped onion` → one onion group.
 - `1 red onion` + `1 yellow onion` → separate groups.
-- `1 cup flour` + `100 g flour` → separate unresolved groups; no density conversion.
+- `1 cup flour` + `4 oz flour` → separate unresolved groups; no density conversion.
 - `2 cloves garlic` + `1 bulb garlic` → separate groups unless an explicit reviewed conversion is introduced.
 
 ### 4. Convert only compatible units
@@ -319,9 +323,9 @@ Onions are purchased whole, so 1¼ rounds up to 2.
 | `½ onion` + `¾ onion` | `1¼ onion` | `2 onions` | Known `discreteEach`; ceiling once after sum. |
 | `1 diced onion` + `½ chopped onion` | `1½ onion` | `2 onions` | Preparation does not change purchase identity. |
 | `1 red onion` + `1 yellow onion` | two groups | `1 red`, `1 yellow` | Identity modifiers prevent merge. |
-| `200 g flour` + `0.5 kg flour` | `700 g flour` | `700 g flour` | Compatible mass conversion; continuous goods are not integer-rounded. |
+| `8 oz flour` + `½ lb flour` | `1 lb flour` | `1 lb flour` | Compatible Imperial mass conversion; continuous goods are not integer-rounded. |
 | `1 cup milk` + `8 fl oz milk` | `2 cups milk` | `2 cups milk` | Compatible volume conversion under one explicit locale. |
-| `1 cup flour` + `100 g flour` | two groups | review | Mass/volume conversion needs ingredient density. |
+| `1 cup flour` + `4 oz flour` | two groups | review | Mass/volume conversion needs ingredient density. |
 | `1½ lemons` | `1½ lemons` | `2 lemons` | Known `discreteEach`. |
 | `1.25 lb onions` | `1.25 lb onions` | `1.25 lb onions` | Mass is continuous even though onions can also be counted. |
 | `1½ bunches cilantro` | `1½ bunches` | review | `bunch` is variable; no silent package rounding by default. |
@@ -463,4 +467,3 @@ Exit: no legacy data is lost, and a rules change cannot alter shopping quantitie
 - Every automated decision has a local explanation trace and a user override.
 - Unit, golden, integration, UI, accessibility, migration, and export tests cover the feature.
 - Telemetry contains no ingredient content.
-

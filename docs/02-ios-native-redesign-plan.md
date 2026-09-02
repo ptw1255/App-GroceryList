@@ -3,7 +3,10 @@
 Status: product schema and implementation plan; no UI code included  
 Dependency: begin after the stabilization plan reaches Phase 3
 
-Companion feature specification: [Deterministic ingredient aggregation](03-deterministic-ingredient-aggregation-plan.md)
+Companion feature specifications:
+
+- [Deterministic ingredient aggregation](03-deterministic-ingredient-aggregation-plan.md)
+- [Imperial shopping decision engine](04-imperial-shopping-decision-engine.md)
 
 ## Product outcome
 
